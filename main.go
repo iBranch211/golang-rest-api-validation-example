@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
-	"golang-rest-api-validation-example/controller"
 	_ "golang-rest-api-validation-example/docs"
 	"golang-rest-api-validation-example/handler"
+	"golang-rest-api-validation-example/routes"
 	"golang-rest-api-validation-example/util"
 )
 
@@ -20,20 +20,10 @@ func main() {
 
 	e := echo.New()
 	e.HTTPErrorHandler = handler.ErrorHandler
-	userController := controller.NewUserController()
 	e.Validator = util.NewValidationUtil()
-	v1 := e.Group("/api/v1")
-	{
-		v1.GET("/users", userController.GetAllUser)
-		v1.POST("/users", userController.SaveUser)
-		v1.GET("/users/:id", userController.GetUser)
-		v1.PUT("/users/:id", userController.UpdateUser)
-		v1.DELETE("/users/:id", userController.DeleteUser)
 
-	}
-
-	e.GET("/api", controller.RedirectIndexPage)
-	e.GET("/api/*", echoSwagger.WrapHandler)
+	routes.GetUserApiRoutes(e)
+	routes.GetSwaggerRoutes(e)
 	// echo server 9000 de başlatıldı.
-	e.Logger.Fatal(e.Start(":9000"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", util.GetEnv("SERVER_PORT", "9000"))))
 }

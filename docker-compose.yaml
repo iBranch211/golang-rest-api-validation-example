@@ -3,6 +3,8 @@ services:
   app:
     build: ./
     container_name: app
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
+    environment:
+      - SERVER_PORT
     ports:
-      - "9000:9000"
+      - ${SERVER_PORT}:${SERVER_PORT}

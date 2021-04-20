@@ -22,6 +22,7 @@ docker-compose up -d
 * Echo Swagger
 * Swag
 * Template
+* Air  
 * Go Uuid
 * Go Urn  
 * Validator
@@ -35,5 +36,21 @@ docker-compose up -d
 http://localhost:9000/api
 
 <img src="https://github.com/susimsek/golang-rest-api-validation-example/blob/main/images/golang-swagger.png" alt="Golang Swagger" width="100%" height="100%"/> 
+
+## Development
+
+Please note that it requires Go 1.16+ since I use `go mod` to manage dependencies.
+
+```bash
+
+# 1. install dependencies
+go mod download
+
+# 2. For less typing, you could add alias air='~/.air' to your .bashrc or .zshrc.
+alias air='~/.air
+
+# 3. run it 
+air
+```
 
 

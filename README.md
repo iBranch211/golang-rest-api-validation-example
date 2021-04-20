@@ -47,7 +47,7 @@ Please note that it requires Go 1.16+ since I use `go mod` to manage dependencie
 go mod download
 
 # 2. For less typing, you could add alias air='~/.air' to your .bashrc or .zshrc.
-alias air='~/.air
+alias air='~/.air'
 
 # 3. run it
 air

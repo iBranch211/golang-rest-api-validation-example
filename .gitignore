@@ -1,23 +1,26 @@
-# Compiled class file
-*.class
+# Created by .ignore support plugin (hsz.mobi)
+### Go template
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
-# Log file
-*.log
+# Test binary, built with `go test -c`
+*.test
 
-# BlueJ files
-*.ctxt
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Editors
+.idea/*
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+**/sponge_log.log
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+testing/kokoro/test-env.sh

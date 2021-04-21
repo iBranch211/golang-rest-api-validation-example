@@ -32,7 +32,8 @@ var doc = `{
             "get": {
                 "description": "Get all user items",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "produces": [
                     "application/json"
@@ -41,6 +42,18 @@ var doc = `{
                     "users"
                 ],
                 "summary": "Get all users",
+                "parameters": [
+                    {
+                        "enum": [
+                            "xml",
+                            "json"
+                        ],
+                        "type": "string",
+                        "description": "mediaType",
+                        "name": "mediaType",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -62,7 +75,8 @@ var doc = `{
             "post": {
                 "description": "Create a new user item",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "produces": [
                     "application/json"
@@ -72,6 +86,16 @@ var doc = `{
                 ],
                 "summary": "Create a user",
                 "parameters": [
+                    {
+                        "enum": [
+                            "json",
+                            "xml"
+                        ],
+                        "type": "string",
+                        "description": "mediaType",
+                        "name": "mediaType",
+                        "in": "query"
+                    },
                     {
                         "description": "New User",
                         "name": "user",
@@ -108,7 +132,8 @@ var doc = `{
             "get": {
                 "description": "Get a user item",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "produces": [
                     "application/json"
@@ -118,6 +143,16 @@ var doc = `{
                 ],
                 "summary": "Get a user",
                 "parameters": [
+                    {
+                        "enum": [
+                            "json",
+                            "xml"
+                        ],
+                        "type": "string",
+                        "description": "mediaType",
+                        "name": "mediaType",
+                        "in": "query"
+                    },
                     {
                         "type": "string",
                         "description": "User ID",
@@ -150,7 +185,8 @@ var doc = `{
             "put": {
                 "description": "Update a user item",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "produces": [
                     "application/json"
@@ -160,6 +196,16 @@ var doc = `{
                 ],
                 "summary": "Update a user",
                 "parameters": [
+                    {
+                        "enum": [
+                            "json",
+                            "xml"
+                        ],
+                        "type": "string",
+                        "description": "mediaType",
+                        "name": "mediaType",
+                        "in": "query"
+                    },
                     {
                         "type": "string",
                         "description": "User ID",
@@ -207,7 +253,8 @@ var doc = `{
             "delete": {
                 "description": "Delete a new user item",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "produces": [
                     "application/json"
@@ -217,6 +264,16 @@ var doc = `{
                 ],
                 "summary": "Delete a user",
                 "parameters": [
+                    {
+                        "enum": [
+                            "json",
+                            "xml"
+                        ],
+                        "type": "string",
+                        "description": "mediaType",
+                        "name": "mediaType",
+                        "in": "query"
+                    },
                     {
                         "type": "string",
                         "description": "User ID",

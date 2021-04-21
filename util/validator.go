@@ -3,7 +3,7 @@ package util
 import (
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
-	"golang-rest-api-validation-example/handler"
+	"golang-rest-api-validation-example/exception"
 )
 
 type ValidationUtil struct {
@@ -20,11 +20,11 @@ func (v *ValidationUtil) Validate(i interface{}) error {
 
 func BindAndValidate(c echo.Context, i interface{}) error {
 	if err := c.Bind(i); err != nil {
-		return handler.BadRequestException(err.Error())
+		return exception.BadRequestException(err.Error())
 	}
 
 	if err := c.Validate(i); err != nil {
-		return handler.BadRequestException(err.Error())
+		return exception.BadRequestException(err.Error())
 	}
 	return nil
 }

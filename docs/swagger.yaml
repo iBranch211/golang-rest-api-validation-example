@@ -36,7 +36,16 @@ paths:
     get:
       consumes:
       - application/json
+      - text/xml
       description: Get all user items
+      parameters:
+      - description: mediaType
+        enum:
+        - xml
+        - json
+        in: query
+        name: mediaType
+        type: string
       produces:
       - application/json
       responses:
@@ -56,8 +65,16 @@ paths:
     post:
       consumes:
       - application/json
+      - text/xml
       description: Create a new user item
       parameters:
+      - description: mediaType
+        enum:
+        - json
+        - xml
+        in: query
+        name: mediaType
+        type: string
       - description: New User
         in: body
         name: user
@@ -86,8 +103,16 @@ paths:
     delete:
       consumes:
       - application/json
+      - text/xml
       description: Delete a new user item
       parameters:
+      - description: mediaType
+        enum:
+        - json
+        - xml
+        in: query
+        name: mediaType
+        type: string
       - description: User ID
         in: path
         name: id
@@ -114,8 +139,16 @@ paths:
     get:
       consumes:
       - application/json
+      - text/xml
       description: Get a user item
       parameters:
+      - description: mediaType
+        enum:
+        - json
+        - xml
+        in: query
+        name: mediaType
+        type: string
       - description: User ID
         in: path
         name: id
@@ -142,8 +175,16 @@ paths:
     put:
       consumes:
       - application/json
+      - text/xml
       description: Update a user item
       parameters:
+      - description: mediaType
+        enum:
+        - json
+        - xml
+        in: query
+        name: mediaType
+        type: string
       - description: User ID
         in: path
         name: id

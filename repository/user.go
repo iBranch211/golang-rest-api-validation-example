@@ -2,7 +2,7 @@ package repository
 
 import (
 	uuid "github.com/satori/go.uuid"
-	"golang-rest-api-validation-example/handler"
+	"golang-rest-api-validation-example/exception"
 	"golang-rest-api-validation-example/model"
 )
 
@@ -35,7 +35,7 @@ func (userRepository *UserRepository) SaveUser(user *model.User) *model.User {
 func (userRepository *UserRepository) GetUser(id string) (*model.User, error) {
 	existUser, found := userRepository.users[id]
 	if !found {
-		return nil, handler.ResourceNotFoundException("User", "id", id)
+		return nil, exception.ResourceNotFoundException("User", "id", id)
 	}
 	return existUser, nil
 }
@@ -43,7 +43,7 @@ func (userRepository *UserRepository) GetUser(id string) (*model.User, error) {
 func (userRepository *UserRepository) UpdateUser(id string, user *model.User) (*model.User, error) {
 	existUser, found := userRepository.users[id]
 	if !found {
-		return nil, handler.ResourceNotFoundException("User", "id", id)
+		return nil, exception.ResourceNotFoundException("User", "id", id)
 	}
 
 	existUser.Name = user.Name
@@ -57,7 +57,7 @@ func (userRepository *UserRepository) UpdateUser(id string, user *model.User) (*
 func (userRepository *UserRepository) DeleteUser(id string) error {
 	_, found := userRepository.users[id]
 	if !found {
-		return handler.ResourceNotFoundException("User", "id", id)
+		return exception.ResourceNotFoundException("User", "id", id)
 	}
 	delete(userRepository.users, id)
 	return nil

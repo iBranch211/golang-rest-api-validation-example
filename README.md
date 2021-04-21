@@ -18,7 +18,8 @@ docker-compose up -d
 ## Used Technologies
 
 * Golang 1.16.3
-* Echo
+* Echo 
+* Content Negotiation Support(Xml,Json Support)  
 * Echo Swagger
 * Swag
 * Template

@@ -1,18 +1,18 @@
 package handler
 
 import (
-	"fmt"
 	"github.com/labstack/echo/v4"
+	"golang-rest-api-validation-example/util"
 	"net/http"
 	"time"
 )
 
 // APIError example
 type APIError struct {
-	Status    int    `json:"status"`
-	Message   string `json:"message"`
-	Path      string `json:"path"`
-	Timestamp int    `json:"timestamp"`
+	Status    int    `json:"status" xml:"status"`
+	Message   string `json:"message" xml:"message"`
+	Path      string `json:"path" xml:"path"`
+	Timestamp int64  `json:"timestamp" xml:"timestamp"`
 }
 
 func ErrorHandler(err error, c echo.Context) {
@@ -33,13 +33,12 @@ func ErrorHandler(err error, c echo.Context) {
 	code := he.Code
 	message := he.Message
 	if m, ok := he.Message.(string); ok {
-		message =
-			echo.Map{
-				"status":    code,
-				"message":   m,
-				"path":      c.Request().RequestURI,
-				"timestamp": time.Now().Unix(),
-			}
+		message = &APIError{
+			Status:    code,
+			Message:   m,
+			Path:      c.Request().RequestURI,
+			Timestamp: time.Now().Unix(),
+		}
 	}
 
 	// Send response
@@ -47,24 +46,10 @@ func ErrorHandler(err error, c echo.Context) {
 		if c.Request().Method == http.MethodHead { // Issue #608
 			err = c.NoContent(code)
 		} else {
-			c.JSON(code, message)
+			util.Negotiate(c, code, message)
 		}
 		if err != nil {
 			c.Logger().Error(err)
 		}
 	}
-}
-
-func ResourceNotFoundException(resourceName string, fieldName string, fieldValue string) error {
-	msg := fmt.Sprintf("%s not found with %s : %s", resourceName, fieldName, fieldValue)
-	return echo.NewHTTPError(http.StatusNotFound, msg)
-}
-
-func BadRequestException(msg string) error {
-	return echo.NewHTTPError(http.StatusBadRequest, msg)
-}
-
-func ConflictException(resourceName string, fieldName string, fieldValue string) error {
-	msg := fmt.Sprintf("%s with %s : %s already exists", resourceName, fieldName, fieldValue)
-	return echo.NewHTTPError(http.StatusConflict, msg)
 }

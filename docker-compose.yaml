@@ -5,6 +5,7 @@ services:
     container_name: app
     restart: ${RESTART_POLICY}
     environment:
+      - TZ
       - SERVER_PORT
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
